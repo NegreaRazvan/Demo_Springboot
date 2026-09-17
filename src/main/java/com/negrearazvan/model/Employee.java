@@ -15,34 +15,28 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @NotBlank(message = "First name is mandatory")
     private String firstName;
 
-    @NotBlank(message = "Last name is mandatory")
     private String lastName;
 
-    @NotBlank(message = "Email is mandatory")
-    @Email(message = "Email should be valid")
     @Column(unique = true, nullable = false)
     private String email;
 
-    @NotBlank(message = "Department is mandatory")
     private String department;
 
     protected Employee() {
     }
 
-    public Employee(Integer id, String firstName, String lastName, String email, String department) {
-        this.id = id;
+    public Employee(String firstName, String lastName, String email, String department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.department = department;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

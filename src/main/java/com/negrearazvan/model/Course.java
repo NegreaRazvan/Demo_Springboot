@@ -31,8 +31,7 @@ public class Course {
     protected Course() {
     }
 
-    public Course(Integer id, String title, String description, Long duration) {
-        this.id = id;
+    public Course(String title, String description, Long duration) {
         this.title = title;
         this.description = description;
         this.duration = duration;
