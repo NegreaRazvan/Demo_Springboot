@@ -3,6 +3,7 @@ package com.negrearazvan.controller;
 
 import com.negrearazvan.model.Course;
 import com.negrearazvan.service.CourseService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class CourseController {
     }
 
     @PostMapping
-    public Course createCourse(@RequestBody Course course) {
+    public Course createCourse(@Valid @RequestBody Course course) {
         return courseService.createCourse(course);
     }
 }

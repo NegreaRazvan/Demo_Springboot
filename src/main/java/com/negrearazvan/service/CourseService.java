@@ -1,6 +1,7 @@
 package com.negrearazvan.service;
 
 import com.negrearazvan.model.Course;
+import com.negrearazvan.model.exception.ResourceNotFoundException;
 import com.negrearazvan.repository.CourseRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -20,7 +21,7 @@ public class CourseService {
 
     public Course getCourseById(Long id) {
         return courseRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Course not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(id, "course"));
     }
 
     public Course createCourse(Course course) {

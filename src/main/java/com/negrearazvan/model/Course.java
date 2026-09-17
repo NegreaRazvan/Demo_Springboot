@@ -5,6 +5,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "courses")
@@ -13,8 +17,15 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "Title is mandatory")
     private String title;
+
+    @NotBlank(message = "Description is mandatory")
     private String description;
+
+    @Min(value = 1, message = "Duration must be greater than 0")
+    @Positive(message = "Duration must be a positive number")
+    @NotNull(message = "Duration is mandatory")
     private Long duration;
 
     protected Course() {
