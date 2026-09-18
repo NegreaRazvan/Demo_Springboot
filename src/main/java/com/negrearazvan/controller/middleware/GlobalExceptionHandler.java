@@ -1,5 +1,6 @@
 package com.negrearazvan.controller.middleware;
 
+import com.negrearazvan.model.exception.AlreadyEnrolledException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.negrearazvan.model.exception.EmailAlreadyExistsException;
@@ -29,6 +30,12 @@ public class GlobalExceptionHandler {
     public ProblemDetail handleEmailExists(EmailAlreadyExistsException ex) {
         log.debug("Duplicate email: {}", ex.getMessage());
         return problem(HttpStatus.CONFLICT, "Email already in use", ex.getMessage());
+    }
+
+    @ExceptionHandler(AlreadyEnrolledException.class)
+    public ProblemDetail handleAlreadyEnrolled(AlreadyEnrolledException ex) {
+        log.debug("Already enrolled: {}", ex.getMessage());
+        return problem(HttpStatus.CONFLICT, "Already enrolled", ex.getMessage());
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)

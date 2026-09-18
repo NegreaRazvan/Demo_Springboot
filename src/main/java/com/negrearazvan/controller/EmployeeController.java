@@ -28,7 +28,7 @@ public class EmployeeController {
     @GetMapping
     public PageResponse<EmployeeResponse> getEmployees(
             @ModelAttribute EmployeeFilter filter,
-            @PageableDefault(sort = "lastName", direction = Sort.Direction.ASC) Pageable pageable) {
+            @PageableDefault(size = 20, sort = "lastName", direction = Sort.Direction.ASC) Pageable pageable) {
 
         return employeeService.search(filter, pageable);
     }

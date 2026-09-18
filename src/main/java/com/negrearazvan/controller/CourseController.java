@@ -24,7 +24,7 @@ public class CourseController {
     @GetMapping
     public PageResponse<CourseResponse> getAllCourses(
             @ModelAttribute CourseFilter filter,
-            @PageableDefault(sort = "title", direction = Sort.Direction.ASC) Pageable pageable
+            @PageableDefault(size = 20, sort = "title", direction = Sort.Direction.ASC) Pageable pageable
     ) {
         return courseService.search(filter, pageable);
     }
