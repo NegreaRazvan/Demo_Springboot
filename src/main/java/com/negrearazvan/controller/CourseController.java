@@ -2,10 +2,12 @@ package com.negrearazvan.controller;
 
 
 import com.negrearazvan.model.Course;
-import com.negrearazvan.model.dto.CourseRequest;
-import com.negrearazvan.model.dto.CourseResponse;
+import com.negrearazvan.model.dto.*;
 import com.negrearazvan.service.CourseService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -20,8 +22,11 @@ public class CourseController {
     }
 
     @GetMapping
-    public List<CourseResponse> getAllCourses() {
-        return courseService.getAllCourses();
+    public PageResponse<CourseResponse> getAllCourses(
+            @ModelAttribute CourseFilter filter,
+            @PageableDefault(sort = "title", direction = Sort.Direction.ASC) Pageable pageable
+    ) {
+        return courseService.search(filter, pageable);
     }
 
     @GetMapping("/{id}")
