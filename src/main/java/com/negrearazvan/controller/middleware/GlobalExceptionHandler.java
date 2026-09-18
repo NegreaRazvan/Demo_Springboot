@@ -1,4 +1,4 @@
-package com.negrearazvan.controller.middlewares;
+package com.negrearazvan.controller.middleware;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

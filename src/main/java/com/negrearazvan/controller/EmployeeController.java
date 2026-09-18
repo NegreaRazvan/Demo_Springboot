@@ -2,11 +2,15 @@ package com.negrearazvan.controller;
 
 
 import com.negrearazvan.model.Employee;
+import com.negrearazvan.model.dto.EmployeeFilter;
 import com.negrearazvan.model.dto.EmployeeRequest;
 import com.negrearazvan.model.dto.EmployeeResponse;
+import com.negrearazvan.model.dto.PageResponse;
 import com.negrearazvan.service.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -22,10 +26,11 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<EmployeeResponse> getEmployees(@RequestParam(required = false) String email, Pageable pageable) {
-        if (email != null && !email.isBlank())
-            return employeeService.getEmployeeByEmail(email);
-        return employeeService.getAllEmployees();
+    public PageResponse<EmployeeResponse> getEmployees(
+            @ModelAttribute EmployeeFilter filter,
+            @PageableDefault(sort = "lastName", direction = Sort.Direction.ASC) Pageable pageable) {
+
+        return employeeService.search(filter, pageable);
     }
 
     @GetMapping("/{id}")
