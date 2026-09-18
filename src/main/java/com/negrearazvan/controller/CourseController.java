@@ -2,6 +2,8 @@ package com.negrearazvan.controller;
 
 
 import com.negrearazvan.model.Course;
+import com.negrearazvan.model.dto.CourseRequest;
+import com.negrearazvan.model.dto.CourseResponse;
 import com.negrearazvan.service.CourseService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -18,17 +20,17 @@ public class CourseController {
     }
 
     @GetMapping
-    public List<Course> getAllCourses() {
+    public List<CourseResponse> getAllCourses() {
         return courseService.getAllCourses();
     }
 
     @GetMapping("/{id}")
-    public Course getCourseById(@PathVariable Long id) {
+    public CourseResponse getCourseById(@PathVariable Long id) {
         return courseService.getCourseById(id);
     }
 
     @PostMapping
-    public Course createCourse(@Valid @RequestBody Course course) {
+    public CourseResponse createCourse(@Valid @RequestBody CourseRequest course) {
         return courseService.createCourse(course);
     }
 }

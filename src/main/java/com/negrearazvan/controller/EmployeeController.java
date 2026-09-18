@@ -6,6 +6,7 @@ import com.negrearazvan.model.dto.EmployeeRequest;
 import com.negrearazvan.model.dto.EmployeeResponse;
 import com.negrearazvan.service.EmployeeService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -21,7 +22,7 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<EmployeeResponse> getEmployees(@RequestParam(required = false) String email) {
+    public List<EmployeeResponse> getEmployees(@RequestParam(required = false) String email, Pageable pageable) {
         if (email != null && !email.isBlank())
             return employeeService.getEmployeeByEmail(email);
         return employeeService.getAllEmployees();

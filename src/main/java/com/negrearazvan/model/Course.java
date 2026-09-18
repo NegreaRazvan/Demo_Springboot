@@ -15,17 +15,12 @@ import jakarta.validation.constraints.Positive;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @NotBlank(message = "Title is mandatory")
     private String title;
 
-    @NotBlank(message = "Description is mandatory")
     private String description;
 
-    @Min(value = 1, message = "Duration must be greater than 0")
-    @Positive(message = "Duration must be a positive number")
-    @NotNull(message = "Duration is mandatory")
     private Long duration;
 
     protected Course() {
@@ -37,7 +32,7 @@ public class Course {
         this.duration = duration;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
