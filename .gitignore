@@ -10,3 +10,18 @@ build/
 
 .env
 src/main/resources/application.properties
+
+badstatus.json
+course1.json
+course2.json
+course3.json
+emp2.json
+emp1.json
+emp3.json
+enr2.json
+enr4.json
+enr-badempl.json
+enr-nocourse.json
+enr1.json
+enr3.json
+status.json
