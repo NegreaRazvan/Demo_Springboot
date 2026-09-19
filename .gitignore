@@ -1,0 +1,14 @@
+HELP.md
+
+build/
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+.idea/
+*.iml
+.vscode/
+
+.env
+**/src/main/resources/application.properties
