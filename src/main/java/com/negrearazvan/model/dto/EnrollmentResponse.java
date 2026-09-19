@@ -4,6 +4,7 @@ public record EnrollmentResponse(
         Long id,
         Long employeeId,
         Long courseId,
-        String status
+        String status,
+        String employeeEmail
 ) {
 }

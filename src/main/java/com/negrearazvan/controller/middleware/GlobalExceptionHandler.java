@@ -1,6 +1,7 @@
 package com.negrearazvan.controller.middleware;
 
 import com.negrearazvan.model.exception.AlreadyEnrolledException;
+import com.negrearazvan.model.exception.EnrollmentNotAllowedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.negrearazvan.model.exception.EmailAlreadyExistsException;
@@ -36,6 +37,12 @@ public class GlobalExceptionHandler {
     public ProblemDetail handleAlreadyEnrolled(AlreadyEnrolledException ex) {
         log.debug("Already enrolled: {}", ex.getMessage());
         return problem(HttpStatus.CONFLICT, "Already enrolled", ex.getMessage());
+    }
+
+    @ExceptionHandler(EnrollmentNotAllowedException.class)
+    public ProblemDetail handleEnrollmentNotAllowed(EnrollmentNotAllowedException ex) {
+        log.debug("Enrollment not allowed: {}", ex.getMessage());
+        return problem(HttpStatus.FORBIDDEN, "Enrollment not allowed", ex.getMessage());
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)

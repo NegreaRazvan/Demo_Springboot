@@ -13,7 +13,8 @@ public class EnrollmentMapper {
                 enrollment.getId(),
                 enrollment.getEmployee().getId(),
                 enrollment.getCourse().getId(),
-                enrollment.getStatus().name()
+                enrollment.getStatus().name(),
+                enrollment.getEmployee().getEmail()
         );
     }
 }

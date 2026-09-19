@@ -12,6 +12,7 @@ import com.negrearazvan.repository.CourseRepository;
 import com.negrearazvan.repository.EmployeeRepository;
 import com.negrearazvan.repository.EnrollmentRepository;
 import com.negrearazvan.service.mapper.EnrollmentMapper;
+import com.negrearazvan.service.policy.EnrollmentPolicy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,7 +58,9 @@ public class EnrollmentService {
     }
 
     @Transactional
-    public EnrollmentResponse createEnrollment(EnrollmentRequest request) {
+    // An exercise to make use of a functional interface
+    //public EnrollmentResponse createEnrollment(EnrollmentRequest request, EnrollmentPolicy policy)
+    public EnrollmentResponse createEnrollment(EnrollmentRequest request){
         Employee employee = employeeRepository.findById(request.employeeId())
                 .orElseThrow(() -> new ResourceNotFoundException(request.employeeId(), "employee"));
         Course course = courseRepository.findById(request.courseId())
@@ -66,6 +69,9 @@ public class EnrollmentService {
         if (enrollmentRepository.existsByEmployeeIdAndCourseId(employee.getId(), course.getId())) {
             throw new AlreadyEnrolledException(employee.getId(), course.getId());
         }
+
+        //if(!policy.isEnrollmentAllowed(employee, course))
+        //    throw new IllegalArgumentException("Enrollment not allowed for this employee and course combination.");
 
         Enrollment enrollment = new Enrollment(employee, course);
         Enrollment savedEnrollment = enrollmentRepository.save(enrollment);

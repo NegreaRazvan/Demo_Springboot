@@ -5,6 +5,7 @@ import com.negrearazvan.model.dto.EnrollmentResponse;
 import com.negrearazvan.model.dto.StatusUpdateRequest;
 import com.negrearazvan.model.enumeration.EnrollmentStatus;
 import com.negrearazvan.service.EnrollmentService;
+import com.negrearazvan.service.policy.EnrollmentPolicy;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,7 @@ public class EnrollmentController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EnrollmentResponse createEnrollment(@Valid @RequestBody EnrollmentRequest request) {
+        //return enrollmentService.createEnrollment(request, EnrollmentPolicy.HR_ONLY.and(EnrollmentPolicy.maxDuration(40)));
         return enrollmentService.createEnrollment(request);
     }
 
